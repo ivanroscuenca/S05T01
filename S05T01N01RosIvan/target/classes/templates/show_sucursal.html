@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link rel="stylesheet" href="assets/ccs/main.css">
+
+    <title>Listado de sucursals</title>
+</head>
+<body>
+
+<!-- =======================================================================
+        Barra de navegación
+ ======================================================================= -->
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/sucursals"></a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarText"
+                aria-controls="navbarText"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/sucursals">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/sucursals/add">Añadir</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+        Página de selección de Sucursal
+      </span>
+        </div>
+    </div>
+</nav>
+
+<br>
+
+<!-- =======================================================================
+        Listado de Sucursales
+ ======================================================================= -->
+<div class="container">
+    <div class="row">
+        <h1>Lista de Sucursal elegida</h1>
+    </div>
+    <br>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>pk_SucursalID</th>
+            <th>nomSucursal</th>
+            <th>paisSucursal</th>
+            <th>Tipus</th>
+            <th>Accions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${sucursal}">
+            <td th:text="${sucursal.pk_SucursalID}"></td>
+            <td th:text="${sucursal.nomSucursal}"></td>
+            <td th:text="${sucursal.paisSucursal}"></td>
+            <td th:text="${sucursal.tipusSucursal}"></td>
+            <td>
+                <a th:href="@{/sucursals/update/{id}(id=${sucursal.pk_SucursalID})}" class="btn btn-info">Editar</a>
+                <a th:href="@{/sucursals/delete/{id}(id=${sucursal.pk_SucursalID})}" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
